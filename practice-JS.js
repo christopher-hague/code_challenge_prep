@@ -79,3 +79,54 @@ function findMinimum(array) {
 function findMaximum(array) {
   return Math.max.apply(null, array);
 }
+
+// Question 3
+// Write a function that sorts the inner content of every word of a sentence, as a string, in ascending order (a-z). The inner content of a word is the content without the first and the last characters. For any words with a prime number of letters, sort the inner content in descending instead of ascending order (z-a). The string will contain only letters and spaces.
+//
+//  Example output: strangeSort(“science was my favorite subject”) --> “sniecce was my faiortve sujecbt”
+
+// write an isPrime helper function, which will determine if length of str is prime
+
+function isPrime(n) {
+  for(let i = 2; i < n; i++) {
+    if(n % i === 0) {
+      return false
+    }
+  }
+  return n !== 1
+}
+
+// write a sortInteriorAsc helper function , which will isolate the first and lwast letter of a str and sort the rest (asc)
+
+function sortInteriorAsc(str) {
+  var interior = str.substring(1, str.length - 1).split("").sort(function(a, b) {
+    return a.toLowerCase() > b.toLowerCase()
+  }).join("")
+
+  return str[0] + interior + str[str.length - 1]
+}
+
+// write a sortInteriorDesc helper function, which will isolate the first and last letter of a str and sort the rest (desc)
+
+function sortInteriorDesc(str) {
+  var interior = str.substring(1, str.length - 1).split("").sort(function(a, b) {
+    return a.toLowerCase() < b.toLowerCase()
+  }).join("")
+
+  return str[0] + interior + str[str.length - 1]
+}
+
+// write function sortAccordingly, which will split the string at each word and will sort the interior chars of word in descending order if the length of the word is prime. else, sort ascending
+
+function sortAccordingly(str) {
+  return str.split(" ").map(function(word) {
+    if(isPrime(word.length)) {
+      return sortInteriorDesc(word)
+    } else {
+      return sortInteriorAsc(word)
+    }
+  }).join(" ")
+}
+
+console.log(sortAccordingly("science was my favorite subject") ===
+"sniecce was my faiortve sujecbt")

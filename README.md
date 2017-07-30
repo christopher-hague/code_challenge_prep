@@ -40,5 +40,3 @@ Question 3
 Write a function that sorts the inner content of every word of a sentence, as a string, in ascending order (a-z). The inner content of a word is the content without the first and the last characters. For any words with a prime number of letters, sort the inner content in descending instead of ascending order (z-a). The string will contain only letters and spaces.
 
  Example output: strangeSort(“science was my favorite subject”) --> “sniecce was my faiortve sujecbt”
-
-*/
